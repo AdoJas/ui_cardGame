@@ -1,0 +1,325 @@
+:root {
+    --primary-bg: #282c34;
+    --secondary-bg: #61dafb;
+    --card-bg: #f9f9f9;
+    --highlight: #ffd700;
+    --matched: #76c7c0;
+    --text-color: #ffffff;
+    --font-family: 'Poppins', Arial, sans-serif;
+    --base-font-size: 16px;
+    --spacing: 1rem;
+    --max-width: 800px; 
+}
+
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: 1.5;
+    background: var(--primary-bg);
+    color: var(--text-color);
+    margin: 0;
+    padding: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+html, body, main {
+    margin: 0;
+    padding: 0;
+}
+#header,
+#controls,
+#game-options,
+#game-symbols,
+#game-board,
+#high-scores {
+    width: 100%;
+    max-width: var(--max-width); 
+    margin-bottom: var(--spacing);
+    box-sizing: border-box;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary-bg);
+    padding: var(--spacing);
+    border-radius: 0.5rem;
+}
+
+#header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: var(--max-width);
+    background: var(--secondary-bg);
+    padding: var(--spacing);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    gap: 1rem;
+}
+
+#game-options,
+#game-symbols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f4f4;
+    padding: var(--spacing);
+    border-radius: 0.5rem;
+}
+#start-game {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#start-game:hover {
+    background-color: #2980b9;
+}
+
+#player-name {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#player-name:hover {
+    border-color: #3498db;
+}
+
+#player-name:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#game-options label,
+#game-symbols label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+#status-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px; 
+    background: #f4f4f4;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1rem;
+    box-sizing: border-box; 
+    gap: 1rem;
+}
+
+#status-controls span {
+    font-weight: bold;
+    margin: 0 8px; 
+}
+
+#game-options select,
+#game-symbols select {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#game-board {
+    display: grid;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing);
+    border-radius: 0.5rem;
+    aspect-ratio: 1 / 1;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1rem, 4vw, 2rem);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    background-color: var(--highlight);
+}
+
+.card.flipped {
+    background-color: var(--secondary-bg);
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    background-color: var(--matched);
+    pointer-events: none;
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+#high-scores {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing);
+    border-radius: 0.5rem;
+}
+
+#high-scores h2 {
+    margin: 0 0 0.5rem;
+    color: var(--highlight);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#high-scores p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin: 0.5rem;
+}
+button:disabled {
+    background-color: #ccc; 
+    color: #666; 
+    cursor: not-allowed; 
+    opacity: 0.7; 
+    box-shadow: none; 
+}
+
+#preview-game, #reset-game {
+    display: inline-block;
+    width: 200px; 
+    height: 50px; 
+    padding: 0; 
+    font-size: 1rem;
+    font-family: var(--font-family);
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    line-height: 50px; 
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+#preview-game {
+    background-color: #3498db;
+    color: white;
+}
+
+#preview-game:hover {
+    background-color: #2980b9;
+}
+
+#reset-game {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#reset-game:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 600px) {
+    #header,
+    #controls,
+    #game-options,
+    #game-symbols,
+    #game-board,
+    #high-scores {
+        width: 100%;
+    }
+
+    #controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #game-board {
+        max-width: 100vw;
+    }
+
+    #game-options select,
+    #game-symbols select {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    #high-scores {
+        padding: var(--spacing);
+        text-align: center;
+    }
+
+    #preview-game,
+    #reset-game {
+        display: block;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+}
+
